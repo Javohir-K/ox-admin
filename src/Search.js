@@ -4,7 +4,7 @@ import SearchList from "./SearchList";
 function Search({ details }) {
   const [searchField, setSearchField] = useState("");
 
-  const filteredPersons = details.filter((product) => {
+  const filteredProducts = details.filter((product) => {
     return product.productName
       .toLowerCase()
       .includes(searchField.toLowerCase());
@@ -15,21 +15,20 @@ function Search({ details }) {
   };
 
   function searchList() {
-    return <SearchList filteredPersons={filteredPersons} />;
+    return <SearchList filteredProducts={filteredProducts} />;
   }
 
   return (
-    <section className="garamond">
-      <div className="navy georgia ma0 grow">
-        <h2 className="f2">Search your course</h2>
-      </div>
-      <div className="pa2">
-        <input
-          className="pa3 bb br3 grow b--none bg-lightest-blue ma3"
-          type="search"
-          placeholder="Search People"
-          onChange={handleChange}
-        />
+    <section className="search-container">
+      <div className="search-title">
+        <h2>Search your product</h2>
+        <div className="search-input">
+          <input
+            type="search"
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+        </div>
       </div>
       {searchList()}
     </section>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { AUTH } from "./API";
 import { UserContext } from "./userContext";
 
 function LoginPage() {
@@ -11,18 +12,17 @@ function LoginPage() {
   async function login(e) {
     e.preventDefault();
 
-    const response = await fetch("https://toko.ox-sys.com/login", {
+    const response = await fetch(`${AUTH}`, {
       method: "POST",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
       body: JSON.stringify({
         _username: username,
         _password: password,
         _subdomain: "toko",
       }),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-      },
-      credentials: "include",
     });
     if (response.ok) {
       response.json().then(setRedirect(true));

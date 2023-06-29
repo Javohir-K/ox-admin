@@ -1,17 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
+import { UserContext, UserContextProvider } from "./userContext";
 
 function App() {
+  // const { userInfo } = useContext(UserContext);
+
   return (
-    <div className="app">
-      <Routes>
-        <Route element={<LoginPage />} path="/" />
-        <Route element={<Dashboard />} path="/dashboard" />
-      </Routes>
-    </div>
+    <UserContextProvider>
+      <div className="app">
+        <Routes>
+          <Route element={<LoginPage />} path="/" />
+          <Route element={<Dashboard />} path="/dashboard" />
+        </Routes>
+      </div>
+    </UserContextProvider>
   );
 }
 
